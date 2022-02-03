@@ -93,7 +93,7 @@
 		}; // find gbps
 		largest[0] = Math.round(largest[0]*0.00001);
 		const date = new Date(largest[1]*1000);
-		largest[1] = `${date.getMonth()+1}/${date.getDay()}/${date.getFullYear()}`
+		largest[1] = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`
 		return largest;
 	}
 	export async function getAllAttacks() {
