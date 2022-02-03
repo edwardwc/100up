@@ -26,6 +26,7 @@
   "dependencies": {
     "daisyui": "^1.25.4",
     "date-fns": "^2.28.0",
-    "svelte-frappe-charts": "^1.9.1"
+    "svelte-frappe-charts": "^1.9.1",
+    "svelte-paginate": "^0.0.1"
   }
 }

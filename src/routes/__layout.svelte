@@ -2,7 +2,10 @@
 	import '../app.css';
 </script>
 <!-- Made for 100up, designed by Rivage -->
-<html data-theme="dark">
+<svelte:head>
+	<title>100up: Real-Time Attack Statistics</title>
+</svelte:head>
+<html data-theme="dark" lang='en'>
 	<div class="bg-[url('/topography.svg')]">
 		<slot></slot>
 	</div>

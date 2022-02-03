@@ -1,20 +1,16 @@
 <script>
 	import Stats from '$lib/stats.svelte';
-	import { amountOfAttacksByDate } from '$lib/getStats.svelte';
+	import Footer from '$lib/footer.svelte';
+	import { getAmountOfAttacksByDay, getBiggestAttackByDay, fetchData } from '$lib/getStats.svelte';
 	import Chart from 'svelte-frappe-charts';
-
-	let amountByDate = amountOfAttacksByDate();
-	let data = {
-		labels: amountByDate,
-		datasets: [
-			{
-				values: [10, 12, 3, 9, 8, 15, 9]
-			}
-		]
-	};
+	const amountByDate = getAmountOfAttacksByDay();
+	const biggestByDate = getBiggestAttackByDay();
+	const getData = fetchData();
+	const NA = "N/A";
+	const inProgress = "Ongoing";
 </script>
-<div>
-	<div class='min-h-screen'>
+<div class='min-h-screen'>
+	<div>
 		<Stats />
 		<div class='hero p-6 mt-24'>
 			<div class='text-center hero-content'>
@@ -31,7 +27,73 @@
 			</div>
 		</div>
 	</div>
-	<div class='artboard phone-4 bg-gray-800'>
-		<Chart data={data} type="line"/>
+	<div class='lg:columns-2 p-8 opacity-90'>
+		<div class='bg-gray-900 rounded-lg'>
+			<p class='text-center text-2xl text-bold p-4'>
+				Amount of attacks per day
+			</p>
+			{#await amountByDate}
+				<p class='text-center text-2xl'>
+					Loading...
+				</p>
+			{:then amountByDate}
+				<Chart data={{
+		labels: ["6 days ago", "5 days ago", "4 days ago", "3 days ago", "2 days ago", "yesterday", "today"],
+		datasets: [
+			{
+				values: amountByDate,
+			}
+		]
+	}} type="line"/>
+			{/await}
+		</div>
+		<div class='bg-gray-900 rounded-lg'>
+			<p class='text-center text-2xl text-bold p-4'>
+				Largest attack by day (Gbit/s)
+			</p>
+			{#await biggestByDate}
+				<p class='text-center text-2xl'>
+					Loading...
+				</p>
+			{:then biggestByDate}
+				<Chart data={{
+		labels: ["6 days ago", "5 days ago", "4 days ago", "3 days ago", "2 days ago", "yesterday", "today"],
+		datasets: [
+			{
+				values: biggestByDate,
+			}
+		]
+	}} type="line"/>
+			{/await}
+		</div>
 	</div>
+	<div class="overflow-x-auto p-6">
+		<table class="table w-full hover">
+			<thead>
+			<tr>
+				<th>ID</th>
+				<th>IP</th>
+				<th>Start</th>
+				<th>Finish</th>
+				<th>Gbit/s</th>
+				<th>PPS</th>
+			</tr>
+			</thead>
+			<tbody>
+				{#await getData then attacks}
+					{#each attacks as attack}
+						<tr>
+							<th>{attack[0]}</th>
+							<td>{attack[1]}.x</td>
+							<td>{new Date(attack[2]*1000).toISOString()}</td>
+							<td>{attack[3] === 0 ? inProgress : new Date(attack[2]*1000).toISOString()}</td>
+							<td>{attack[4] === 0 ? NA : Math.round((attack[4]*0.00001)*100)/100}</td>
+							<td>{attack[5]}</td>
+						</tr>
+					{/each}
+				{/await}
+			</tbody>
+		</table>
+	</div>
+	<Footer />
 </div>

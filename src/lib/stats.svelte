@@ -14,7 +14,7 @@
 <div class="w-full shadow stats px-4 p-6 opacity-95">
 	<div class="stat place-items-center place-content-center">
 		{#await LargestAttack}
-			<div class="stat-title">Largest Attack</div>
+			<div class="stat-title">Largest attack</div>
 			<div class="stat-value text-success">Loading...</div>
 			<div class="stat-desc">Loading...</div>
 		{:then LargestAttack}
@@ -24,7 +24,7 @@
 		{/await}
 	</div>
 	<div class="stat place-items-center place-content-center">
-		<div class="stat-title">Current Attacks</div>
+		<div class="stat-title">Ongoing attacks</div>
 		<div class="stat-value">
 			{#await numOfCurrentAttacks}
 			Loading...
