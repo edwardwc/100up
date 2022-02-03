@@ -10,7 +10,7 @@
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://attacks.100up.org/" />
-	<meta property="og:title" content="Courvix Network" />
+	<meta property="og:title" content="100up: Real-time Attack Trends" />
 	<meta
 		property="og:description"
 		content="Real-time status of DDoS attack trends"
