@@ -85,8 +85,8 @@
 						<tr>
 							<th>{attack[0]}</th>
 							<td>{attack[1]}.x</td>
-							<td>{new Date(attack[2]*1000).toISOString()}</td>
-							<td>{attack[3] === 0 ? inProgress : new Date(attack[2]*1000).toISOString()}</td>
+							<td>{new Date().getDay() - new Date(attack[2]*1000).getDay() === 0 ? (new Date(attack[2]*1000).getMinutes() < 10 ? `${(new Date(attack[2]*1000).getHours()+1)}:0${(new Date(attack[2]*1000).getMinutes())}` : `${(new Date(attack[2]*1000).getHours()+1)}:${(new Date(attack[2]*1000).getMinutes())}`) : (new Date(attack[2]*1000).getMinutes() < 10 ? `${(new Date(attack[2] * 1000).getMonth() + 1)}/${(new Date(attack[2] * 1000).getDate())} at ${(new Date(attack[2]*1000).getHours()+1)}:0${(new Date(attack[2]*1000).getMinutes())}` : `${(new Date(attack[2] * 1000).getMonth() + 1)}/${(new Date(attack[2] * 1000).getDate())} at ${(new Date(attack[2]*1000).getHours()+1)}:${(new Date(attack[2]*1000).getMinutes())}`)}</td>
+							<td>{attack[3] === 0 ? inProgress : (new Date().getDay() - new Date(attack[2]*1000).getDay() === 0 ? (new Date(attack[2]*1000).getMinutes() < 10 ? `${(new Date(attack[2]*1000).getHours()+1)}:0${(new Date(attack[2]*1000).getMinutes())}` : `${(new Date(attack[2]*1000).getHours()+1)}:${(new Date(attack[2]*1000).getMinutes())}`) : (new Date(attack[2]*1000).getMinutes() < 10 ? `${(new Date(attack[2] * 1000).getMonth() + 1)}/${(new Date(attack[2] * 1000).getDate())} at ${(new Date(attack[2]*1000).getHours()+1)}:0${(new Date(attack[2]*1000).getMinutes())}` : `${(new Date(attack[2] * 1000).getMonth() + 1)}/${(new Date(attack[2] * 1000).getDate())} at ${(new Date(attack[2]*1000).getHours()+1)}:${(new Date(attack[2]*1000).getMinutes())}`))}</td>
 							<td>{attack[4] === 0 ? NA : Math.round((attack[4]*0.00001)*100)/100}</td>
 							<td>{attack[5]}</td>
 						</tr>
