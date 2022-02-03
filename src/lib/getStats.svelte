@@ -13,32 +13,32 @@
 		}
 		for (let h = 0; h < data.length; h++) {
 			if (data[h][3]*1000 > Date.now()-86400000) { // today
-				if (data[h][4] > largest[0]) {
-					largest[0] = data[h][4];
+				if (data[h][4] > largest[6]) {
+					largest[6] = data[h][4];
 				}
 			} else if (data[h][3]*1000 > Date.now()-172800000) { // yesterday
-				if (data[h][4] > largest[1]) {
-					largest[1] = data[h][4];
+				if (data[h][4] > largest[5]) {
+					largest[5] = data[h][4];
 				}
 			} else if (data[h][3]*1000 > Date.now()-259200000) { // two days ago
-				if (data[h][4] > largest[2]) {
-					largest[2] = data[h][4];
+				if (data[h][4] > largest[4]) {
+					largest[4] = data[h][4];
 				}
 			} else if (data[h][3]*1000 > Date.now()-345600000) { // three days ago
 				if (data[h][4] > largest[3]) {
 					largest[3] = data[h][4];
 				}
 			} else if (data[h][3]*1000 > Date.now()-432000000) { // four days ago
-				if (data[h][4] > largest[4]) {
-					largest[4] = data[h][4];
+				if (data[h][4] > largest[2]) {
+					largest[2] = data[h][4];
 				}
 			} else if (data[h][3]*1000 > Date.now()-518400000) { // five days ago
-				if (data[h][4] > largest[5]) {
-					largest[5] = data[h][4];
+				if (data[h][4] > largest[1]) {
+					largest[1] = data[h][4];
 				}
 			} else {
-				if (data[h][4] > largest[6]) {
-					largest[6] = data[h][4];
+				if (data[h][4] > largest[0]) {
+					largest[0] = data[h][4];
 				}
 			}
 		}
